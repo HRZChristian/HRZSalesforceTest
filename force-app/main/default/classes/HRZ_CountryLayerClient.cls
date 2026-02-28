@@ -9,7 +9,6 @@ public without sharing class HRZ_CountryLayerClient implements Database.AllowsCa
      */
     public static List<Object> retrieveCountryData() {
         HRZ_CountryLayerSettings__mdt countryLayerMeta = HRZ_CountryLayerSettings__mdt.getInstance('HRZ_CountryLayer');
-        System.debug('countryLayerMeta: ' + countryLayerMeta);
         if (String.isBlank(countryLayerMeta.HRZ_AccessKey__c) || String.isBlank(countryLayerMeta.HRZ_EndpointPath__c)) {
             throw new HRZ_CountryLayerException('Missing HRZ CountryLayer settings.');
         }
@@ -21,7 +20,6 @@ public without sharing class HRZ_CountryLayerClient implements Database.AllowsCa
             + '?access_key=' + EncodingUtil.urlEncode(countryLayerMeta.HRZ_AccessKey__c, 'UTF-8');
 
         req.setEndpoint(endpoint);
-        System.debug('endpoint: ' + endpoint);
 
         HttpResponse res = new Http().send(req);
         Integer code = res.getStatusCode();
@@ -30,7 +28,6 @@ public without sharing class HRZ_CountryLayerClient implements Database.AllowsCa
         }
 
         Object countriesInfo = JSON.deserializeUntyped(res.getBody());
-                System.debug('countriesInfo: ' + countriesInfo);
 
         return (List<Object>) countriesInfo;
     }

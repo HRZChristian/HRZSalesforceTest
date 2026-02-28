@@ -7,10 +7,10 @@ public with sharing class HRZ_CountrySyncService {
      */
     @InvocableMethod
     public static void fetchCountryData() {
-        List<Object> rawCountries = HRZ_CountryLayerClient.retrieveCountryData();
-        List<HRZ_Country__c> toUpsert = new List<HRZ_Country__c>();
+        List<Object> countriesData = HRZ_CountryLayerClient.retrieveCountryData();
+        List<HRZ_Country__c> countriesToUpsert = new List<HRZ_Country__c>();
 
-        for (Object o : rawCountries) {
+        for (Object o : countriesData) {
 
             Map<String, Object> countryMap = (Map<String, Object>) o;
 
@@ -32,7 +32,7 @@ public with sharing class HRZ_CountrySyncService {
                     regBlocsList.add((String) reg);
                 }
             }
-            String regBlocs = String.join(regBlocsList,',');
+            String regBlocs = String.join(regBlocsList,', ');
 
             HRZ_Country__c c = new HRZ_Country__c();
             c.Name = name;
@@ -42,11 +42,11 @@ public with sharing class HRZ_CountrySyncService {
             c.HRZ_Region__c = region;
             c.HRZ_Regional_Blocs__c = regBlocs;
 
-            toUpsert.add(c);
+            countriesToUpsert.add(c);
         }
 
-        if (!toUpsert.isEmpty()) {
-            upsert toUpsert HRZ_Alpha2Code__c;
+        if (!countriesToUpsert.isEmpty()) {
+            upsert countriesToUpsert HRZ_Alpha2Code__c;
         }
     }
 }
