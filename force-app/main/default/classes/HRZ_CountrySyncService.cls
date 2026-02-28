@@ -1,8 +1,13 @@
-public with sharing class HRZ_CountrySyncService {
-    
+/**
+ * @description Service class responsible for synchronizing country data.
+ */
+public with sharing class HRZ_CountrySyncService { 
+    /**
+     * @description Fetches country data from an external API layer and upserts it into the HRZ_Country__c custom object.
+     */
     @InvocableMethod
     public static void fetchCountryData() {
-        List<Object> rawCountries = HRZ_CountryLayerClient.fetchAll();
+        List<Object> rawCountries = HRZ_CountryLayerClient.retrieveCountryData();
         List<HRZ_Country__c> toUpsert = new List<HRZ_Country__c>();
 
         for (Object o : rawCountries) {

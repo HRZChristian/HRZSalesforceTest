@@ -1,6 +1,13 @@
+
+/**
+ * @description Apex client class for interacting with the CountryLayer API.
+ */
 public without sharing class HRZ_CountryLayerClient implements Database.AllowsCallouts {
-    
-    public static List<Object> fetchAll() {
+    /**
+     * @descriptionRetrieves country data from the CountryLayer API.
+     * @return List<Object> A list containing deserialized country data from the API response.
+     */
+    public static List<Object> retrieveCountryData() {
         HRZ_CountryLayerSettings__mdt countryLayerMeta = HRZ_CountryLayerSettings__mdt.getInstance('HRZ_CountryLayer');
         System.debug('countryLayerMeta: ' + countryLayerMeta);
         if (String.isBlank(countryLayerMeta.HRZ_AccessKey__c) || String.isBlank(countryLayerMeta.HRZ_EndpointPath__c)) {
@@ -28,5 +35,5 @@ public without sharing class HRZ_CountryLayerClient implements Database.AllowsCa
         return (List<Object>) countriesInfo;
     }
     
-        public class HRZ_CountryLayerException extends Exception {}
+    public class HRZ_CountryLayerException extends Exception {}
 }
