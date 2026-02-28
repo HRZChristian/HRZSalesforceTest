@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Filled_Fields</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  ISCHANGED(OwnerId),
+  $Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+  OR(
+    ISBLANK(HRZ_Country__c),
+    ISBLANK(TEXT(LeadSource)),
+						AND(
+      $Profile.Name &lt;&gt; &quot;Contract Manager&quot;,
+      ISBLANK(NumberOfEmployees)
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage>If you want to change the owner, fill Country, Lead Source and Employees fields.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Country Layer</label>
+    <protected>false</protected>
+    <values>
+        <field>HRZ_AccessKey__c</field>
+        <value xsi:type="xsd:string">d9c7446d096ff4bc0a854df80bc998d6</value>
+    </values>
+    <values>
+        <field>HRZ_EndpointPath__c</field>
+        <value xsi:type="xsd:string">/v2/all</value>
+    </values>
+</CustomMetadata>
