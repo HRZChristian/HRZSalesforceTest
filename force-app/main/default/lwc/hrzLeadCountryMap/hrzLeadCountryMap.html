@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title={labels.HRZ_LeadCountryLabel} icon-name="standard:address">
+        <div class="slds-p-around_medium">
+            <template if:true={hasCountry}>
+                <lightning-map 
+                    map-markers={mapMarkers} 
+                    center={mapCenter}
+                    zoom-level="3"
+                    list-view="visible"
+                    height="400px">
+                </lightning-map>
+                <p class="slds-m-top_small">
+                    📍 <strong>{countryName}</strong>
+                </p>
+            </template>
+            <template if:false={hasCountry}>
+                <lightning-spinner alternative-text="Cargando..."></lightning-spinner>
+                <p class="slds-text-color_weak">{labels.HRZ_NoCountryLeadAssigned}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
