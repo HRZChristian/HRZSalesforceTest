@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>HRZ_CountrySyncService</name>
-        <label>HRZ_CountrySyncService</label>
+        <name>Sync_Country_Data</name>
+        <label>Sync Country Data</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <actionName>HRZ_CountrySyncService</actionName>
@@ -39,10 +39,12 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>HRZ_CountrySyncService</targetReference>
+            <targetReference>Sync_Country_Data</targetReference>
         </connector>
         <schedule>
+            <dayOfMonthToRun>0</dayOfMonthToRun>
             <frequency>Daily</frequency>
+            <frequencyNumber>0</frequencyNumber>
             <startDate>2026-03-02</startDate>
             <startTime>13:00:00.000Z</startTime>
         </schedule>

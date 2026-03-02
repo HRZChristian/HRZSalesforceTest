@@ -1,11 +1,27 @@
 /**
  * @description Service class responsible for synchronizing country data.
  */
-public with sharing class HRZ_CountrySyncService { 
+public with sharing class HRZ_CountrySyncService {
+    
+    /**
+     * @description Invocable method that triggers the asynchronous synchronization of country data.
+     */
+    @InvocableMethod
+    public static void syncCountries() {
+        fetchCountryDataAsync();
+    }
+
+    /**
+     * @description Asynchronously fetches country data from an external service.
+     */
+    @Future(callout=true)
+    public static void fetchCountryDataAsync() {
+        fetchCountryData();
+    }
+
     /**
      * @description Fetches country data from an external API layer and upserts it into the HRZ_Country__c custom object.
      */
-    @InvocableMethod
     public static void fetchCountryData() {
         List<Object> countriesData = HRZ_CountryLayerClient.retrieveCountryData();
         List<HRZ_Country__c> countriesToUpsert = new List<HRZ_Country__c>();
